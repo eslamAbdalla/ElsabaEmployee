@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/data">
+        <menu>
+            <group android:checkableBehavior="single">
+
+
+                <item android:id="@+id/nav_profile"
+                    android:icon="@drawable/ic_baseline_person_24"
+                    android:title="@string/Profile"/>
+
+
+
+                <item android:id="@+id/nav_Balance"
+                    android:icon="@drawable/history_24"
+                    android:title="@string/balance"/>
+                <item android:id="@+id/nav_Attendance"
+                    android:icon="@drawable/history_24"
+                    android:title="@string/attendance"/>
+                <item android:id="@+id/nav_Request"
+                    android:icon="@drawable/request32"
+                    android:title="@string/add_request"/>
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="">
+        <menu>
+            <group android:checkableBehavior="single">
+
+                <item android:id="@+id/nav_Exit"
+                    android:icon="@drawable/exit"
+                    android:title="@string/exit"/>
+
+                <item android:id="@+id/nav_LogOut"
+                    android:icon="@drawable/log_out"
+                    android:title="@string/log_out"/>
+            </group>
+
+        </menu>
+    </item>
+
+
+</menu>

@@ -1,0 +1,74 @@
+<resources>
+    <string name="app_name">ElsabaEmployee</string>
+
+    <string name="open" translatable="false">open</string>
+    <string name="close" translatable="false">Close</string>
+
+    <string name="basic_url" translatable="false">http://192.168.10.2/testhrapi/hrapi/</string>
+
+    <string name="please_enter_valid_user_name_and_password">Please Enter Valid User Name And Password</string>
+    <string name="user_name">User Name</string>
+    <string name="password">Password</string>
+    <string name="log_in">Log in</string>
+
+
+    <string name="log_out">Log Out</string>
+    <string name="exit">Exit</string>
+    <string name="Profile">Profile</string>
+
+
+    <string name="please_select_leavetype">Please Select Leave Type</string>
+    <string name="please_select_replacement">Please Select Replacement Employee</string>
+    <string name="from_date">From Date</string>
+    <string name="to_date">To Date</string>
+    <string name="from_time">From Time</string>
+    <string name="to_time">To Time</string>
+    <string name="requested_date">Requested Date</string>
+    <string name="manager_approval">Manager Approval</string>
+    <string name="hr_approval">Hr Approval</string>
+    <string name="add_request">ADD Request</string>
+    <string name="check_in_out">Check In/Out</string>
+    <string name="data">Data</string>
+    <string name="balance">Balance</string>
+    <string name="attendance">Attendance</string>
+    <string name="total_days">Total Days</string>
+    <string name="reload">Reload</string>
+    <string name="connection_error">Connection Error</string>
+    <string name="date">Date</string>
+    <string name="in">In</string>
+    <string name="out">Out</string>
+    <string name="holidayname">Leave</string>
+    <string name="date_format" translatable="false">dd-MMM-yyyy</string>
+    <string name="checkInOutDesc">Press And Hold to Check In/Out</string>
+
+    <string name="check_in_out_act">Check In/Out</string>
+
+
+    <string name="save">Save</string>
+    <string name="note">Note</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="exit_app">Exit Application…?</string>
+    <string name="click_yes_to_exit">Click Yes To Exit</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="check_internet_connection">Check Internet Connection</string>
+    <string name="mandatory">Mandatory</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="enable_GPS">Enable GPS Please</string>
+    <string name="no_GPS_signal">No GPS Signal</string>
+    <string name="check_out">Check Out</string>
+    <string name="check_in">Check in</string>
+    <string name="request_done">Request Added Successfuly</string>
+    <string name="loading">Loading...</string>
+    <string name="please_select_date">please select  Date </string>
+    <string name="please_select_time">please select Time </string>
+    <string name="requests">Requests</string>
+    <string name="all">All</string>
+    <string name="pending">Pending</string>
+    <string name="approved">Approved</string>
+    <string name="rejected">Rejected</string>
+    <string name="filter">Filter</string>
+
+
+</resources>

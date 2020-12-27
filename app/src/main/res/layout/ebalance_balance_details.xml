@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+<LinearLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:background="@drawable/listview"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#DAD7D7"
+       >
+    <TextView
+        android:id="@+id/eBalance_LeaveName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_alignParentStart="true"
+        android:text="Leave Name"
+        android:layout_alignParentLeft="true" />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="14"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:text="@string/total_days"/>
+        <View
+
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="#c2bbbb" />
+
+    <TextView
+        android:id="@+id/eBalance_LeaveTotalDays"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="10"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:text="Total Days"/>
+
+        <View
+
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="#c2bbbb" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="14"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:text="@string/balance"/>
+
+
+        <View
+
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/laborsListView"
+            android:background="#c2bbbb" />
+    <TextView
+        android:id="@+id/eBalance_Balance"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="10"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:text="Balance"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>
+</LinearLayout>

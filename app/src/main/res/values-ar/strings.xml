@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">موظفين السبع</string>
+
+
+
+    <string name="please_enter_valid_user_name_and_password">من فضلك ادخل مستخدم وكلمة مرور صحيحة</string>
+    <string name="user_name">اسم المستخدم</string>
+    <string name="password">كلمة المرور</string>
+    <string name="log_in">تسجيل الدخول</string>
+
+    <string name="log_out">تسجيل الخروج</string>
+    <string name="exit">خروج</string>
+    <string name="Profile">الملف الشخصي</string>
+
+    <string name="please_select_leavetype">اختار نوع الاجازة</string>
+    <string name="please_select_replacement">اختار الموظف البديل</string>
+    <string name="from_date">من تاريخ</string>
+    <string name="to_date">الى تاريخ</string>
+    <string name="from_time">بداية الوقت</string>
+    <string name="to_time">نهاية الوقت</string>
+    <string name="requested_date">تاريخ الطلب</string>
+    <string name="manager_approval">موافقة المدير</string>
+    <string name="hr_approval">موافقة الموارد البشرية </string>
+    <string name="add_request">اضافة طلب</string>
+    <string name="check_in_out">تسجيل دخول / خروج</string>
+    <string name="data">بيانات</string>
+    <string name="balance">الرصيد</string>
+    <string name="attendance">الحضور والانصراف</string>
+    <string name="total_days">اجمالى الايام</string>
+    <string name="reload">حاول مرة اخرى</string>
+    <string name="connection_error">خطأ فى الاتصال</string>
+    <string name="date">التاريخ</string>
+    <string name="in">دخول</string>
+    <string name="out">خروج</string>
+    <string name="holidayname">اجازة</string>
+    <string name="checkInOutDesc">اضغط مع الاستمرار لتسجيل الدخول والخروج</string>
+
+    <string name="check_in_out_act">Check In/Out</string>
+
+
+    <string name="save">حفظ</string>
+    <string name="note">ملاحظات</string>
+    <string name="remember_me">تذكرنى</string>
+    <string name="exit_app">الخروج من البرنامج…؟</string>
+    <string name="click_yes_to_exit">Click Yes To Exit</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
+    <string name="check_internet_connection">تأكد من الاتصال بالانترنت</string>
+    <string name="mandatory">اجبارى</string>
+    <string name="ok">موافق</string>
+    <string name="enable_GPS">من فضلك قم بتفعيل خاصية المواقع</string>
+    <string name="no_GPS_signal">لا يوجد اشارة GPS</string>
+    <string name="check_out">تسجيل خروج</string>
+    <string name="check_in">تسجيل دخول</string>
+    <string name="request_done">تم اضافة طلبك بنجاح</string>
+    <string name="loading">جارى التحميل…</string>
+    <string name="please_select_date">من فضلك اختار التاريخ</string>
+    <string name="please_select_time">من فضلك اختار الوقت </string>
+    <string name="requests">الطلبات</string>
+    <string name="all">الكل</string>
+    <string name="pending">معلق</string>
+    <string name="approved">مقبولة</string>
+    <string name="rejected">مرفوضة</string>
+    <string name="cancel">الغاء</string>
+    <string name="filter">بحث</string>
+
+
+</resources>

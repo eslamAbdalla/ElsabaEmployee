@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CheckInOut"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/inLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:layout_margin="5dp"
+        android:layout_marginBottom="10dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:id="@+id/walkLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/arrowLeft"
+                android:src="@drawable/walk_128"/>
+
+            <ImageView
+                android:id="@+id/arrowLeft"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/arrow_pointing_left_128"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/arrowLeft"
+                android:src="@drawable/office_building_128"/>
+
+            <TextView
+                android:id="@+id/checkInOut_CheckIn"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_toLeftOf="@+id/walkLeft"
+                android:gravity="center"
+                android:textStyle="bold"
+               />
+
+
+
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/outLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:visibility="visible">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:id="@+id/walkRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/arrowRight"
+                android:src="@drawable/walk_rigt_128"/>
+
+            <ImageView
+                android:id="@+id/arrowRight"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/arrow_pointing_right_128"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/arrowRight"
+                android:src="@drawable/office_building_128"/>
+
+            <TextView
+                android:id="@+id/checkInOut_CheckOut"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_toLeftOf="@+id/walkRight"
+                android:gravity="center"
+                android:textStyle="bold"
+               />
+
+
+
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/listview"
+        android:visibility="gone"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:text="@string/date"/>
+        <View
+
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="#c2bbbb" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:text="@string/in"/>
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="#c2bbbb" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:text="@string/out"/>
+
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/checkInOut_ListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/checkInOut_CheckInOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="@string/check_in"
+        android:background="@drawable/button"
+        android:screenReaderFocusable="@drawable/fingerprint_32"
+        android:visibility="invisible"
+        android:drawableLeft="@drawable/fingerprint_32" />
+
+    <Button
+        android:id="@+id/checkInOut_CheckInOut1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginTop="80dp"
+        android:background="@android:color/transparent"
+        android:drawableLeft="@drawable/fingerprint_scan_64"/>
+
+    <ImageView
+
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        android:src="@drawable/up_arrow128"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/checkInOutDesc"/>
+
+
+</LinearLayout>
