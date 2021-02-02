@@ -90,6 +90,7 @@ public class CheckInOut extends AppCompatActivity  implements LocationListener {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
         attendanceListView = findViewById(R.id.checkInOut_ListView);
         checkInOut = findViewById(R.id.checkInOut_CheckInOut);
 
