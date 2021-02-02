@@ -92,6 +92,7 @@ public class CheckInOut extends AppCompatActivity  implements LocationListener {
 
 
 
+
         attendanceListView = findViewById(R.id.checkInOut_ListView);
         checkInOut = findViewById(R.id.checkInOut_CheckInOut);
 
