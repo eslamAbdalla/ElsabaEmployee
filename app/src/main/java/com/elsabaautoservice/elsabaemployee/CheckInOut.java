@@ -124,7 +124,7 @@ public class CheckInOut extends AppCompatActivity  implements LocationListener {
         progressDialog.setContentView(R.layout.progressdialog);
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         progressDialog.setCancelable(false);
-        progressDialog.show();
+//        progressDialog.show();
 
         if (ContextCompat.checkSelfPermission(CheckInOut.this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED){
@@ -147,6 +147,16 @@ public class CheckInOut extends AppCompatActivity  implements LocationListener {
             @Override
             public boolean onLongClick(View v) {
                 progressDialog.show();
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    vibrator.vibrate(VibrationEffect.createOneShot(300, VibrationEffect.DEFAULT_AMPLITUDE));
+                } else {
+                    //deprecated in API 26
+                    vibrator.vibrate(300);
+                }
+
+                checkInOutImage.setClickable(false);
+
                 GetLocation();
 
                 return true;
@@ -166,13 +176,13 @@ public class CheckInOut extends AppCompatActivity  implements LocationListener {
 
 
 
-        checkInOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                CheckInOut();
-                GetLocation();
-            }
-        });
+//        checkInOut.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                CheckInOut();
+//                GetLocation();
+//            }
+//        });
 
 
 
@@ -195,6 +205,11 @@ public class CheckInOut extends AppCompatActivity  implements LocationListener {
             public void onResponse(Call<GetAttendance> call, Response<GetAttendance> response) {
 
                 int code = response.code();
+
+
+
+
+
                 if (code == 200) {
 
                     attendanceList = response.body().getResult();
@@ -318,6 +333,8 @@ public class CheckInOut extends AppCompatActivity  implements LocationListener {
                     }
 
                     progressDialog.dismiss();
+
+                    checkInOutImage.setClickable(true);
                 }else {
 
                     JSONObject jsonObject = null;
@@ -411,9 +428,10 @@ public class CheckInOut extends AppCompatActivity  implements LocationListener {
 //                latitude = Double.valueOf(df.format(latitude));
 //                Longitude = Double.valueOf(df.format(Longitude));
 
-                CheckInOut();
+
 
                 progressDialog.dismiss();
+                CheckInOut();
 
             } catch (Exception e) {
                 progressDialog.dismiss();

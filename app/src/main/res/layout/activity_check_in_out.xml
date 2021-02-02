@@ -7,6 +7,17 @@
     tools:context=".CheckInOut"
     android:orientation="vertical">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+
     <LinearLayout
         android:id="@+id/inLayout"
         android:layout_width="match_parent"
@@ -165,7 +176,7 @@
         android:text="@string/check_in"
         android:background="@drawable/button"
         android:screenReaderFocusable="@drawable/fingerprint_32"
-        android:visibility="invisible"
+        android:visibility="gone"
         android:drawableLeft="@drawable/fingerprint_32" />
 
     <Button
@@ -190,7 +201,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_margin="10dp"
         android:text="@string/checkInOutDesc"/>
 
-
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
