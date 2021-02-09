@@ -183,6 +183,8 @@ public class LogIn extends AppCompatActivity {
                     JsonObject result = responseuser.getResult();
                     token = result.get("token").toString().replaceAll("\"", "");
                     employeeDetailsId = result.get("employeeDetailsId").getAsLong();
+
+                    String empName = result.get("username").toString().replaceAll("\"", "");
                     if (token.equals("null")){
                         progressDialog.dismiss();
                         errorText.setVisibility(View.VISIBLE);
@@ -190,6 +192,7 @@ public class LogIn extends AppCompatActivity {
                     }else {
                         progressDialog.dismiss();
                         startActivity(new Intent(LogIn.this, Home.class));
+                        Home.empName = empName ;
                     }
                 }else {
 

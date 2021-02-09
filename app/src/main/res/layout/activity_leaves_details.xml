@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LeavesDetails">
+
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/listview"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#DAD7D7"
+            >
+            <TextView
+                android:id="@+id/leavesDetails_LeaveStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:gravity="end"
+                android:text="Leave Satus"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true" />
+
+
+            <TextView
+                android:id="@+id/leavesDetails_LeaveName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_alignParentStart="true"
+                android:text="Leave Name"
+                android:layout_alignParentLeft="true" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="@string/from_date"/>
+                <View
+
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="#c2bbbb" />
+
+                <TextView
+                    android:id="@+id/leavesDetails_LeaveFromDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="16"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="From Date"/>
+
+
+
+
+            </LinearLayout>
+
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+
+                android:background="#c2bbbb" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="@string/to_date"/>
+                <View
+
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+
+                    android:background="#c2bbbb" />
+
+                <TextView
+                    android:id="@+id/leavesDetails_LeaveToDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="16"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="To Date"/>
+
+
+
+
+            </LinearLayout>
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+
+                android:background="#c2bbbb" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="@string/from_time"/>
+                <View
+
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="#c2bbbb" />
+
+                <TextView
+                    android:id="@+id/leavesDetails_LeaveFromTime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="16"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="Frome Time"/>
+
+
+
+
+            </LinearLayout>
+
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+
+                android:background="#c2bbbb" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="@string/to_time"/>
+                <View
+
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+
+                    android:background="#c2bbbb" />
+
+                <TextView
+                    android:id="@+id/leavesDetails_LeaveToTime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="16"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="To Time"/>
+
+
+
+
+            </LinearLayout>
+
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+
+                android:background="#c2bbbb" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="@string/requested_date"/>
+                <View
+
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="#c2bbbb" />
+
+                <TextView
+                    android:id="@+id/leavesDetails_LeaveRequestedDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="16"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="Requested Date"/>
+
+
+
+
+            </LinearLayout>
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+
+                android:background="#c2bbbb" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="@string/manager_approval"/>
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="#c2bbbb" />
+                <TextView
+                    android:id="@+id/leavesDetails_ManagerStatus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="16"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="Manager Approval"/>
+
+
+
+
+            </LinearLayout>
+
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+
+                android:background="#c2bbbb" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="@string/hr_approval"/>
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="#c2bbbb" />
+                <TextView
+                    android:id="@+id/leavesDetails_HrStatus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="16"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="Hr Approval"/>
+
+
+
+
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

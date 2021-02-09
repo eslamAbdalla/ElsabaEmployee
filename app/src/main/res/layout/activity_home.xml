@@ -25,6 +25,11 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/home_EmpName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
                 <Spinner
                     android:id="@+id/home_ApproveStatusSpinner"
                     android:layout_width="match_parent"
@@ -37,6 +42,18 @@
                     android:layout_width="match_parent"
                     android:layout_alignParentTop="true"
                     android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/home_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_gravity="center"
+                    android:textSize="20sp"
+                    android:textColor="#FF0000"
+                    android:visibility="gone"/>
+
+
             </LinearLayout>
 
             <com.github.clans.fab.FloatingActionMenu

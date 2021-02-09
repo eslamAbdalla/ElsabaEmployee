@@ -52,10 +52,15 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     FloatingActionButton fabRequest,fabCheckInOut ;
 
     ListView leavesListView ;
+    TextView employeeName, message ;
+
+
     JsonArray leavesList ;
 
     private PlaceHolderApi placeHolderApi ;
     Dialog progressDialog ;
+
+    public static String empName ;
 
     Spinner approveStatusSpinner ;
     ArrayAdapter<ApproveStatus> approveStatusAdapter ;
@@ -75,6 +80,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         fabRequest = findViewById(R.id.home_fabAddRequest);
         fabCheckInOut = findViewById(R.id.home_CheckInOut);
         approveStatusSpinner = findViewById(R.id.home_ApproveStatusSpinner) ;
+        employeeName = findViewById(R.id.home_EmpName);
+        message = findViewById(R.id.home_message);
 
         toggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(toggle);
@@ -88,6 +95,23 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         progressDialog.setCancelable(false);
         progressDialog.show();
+
+
+
+        leavesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                startActivity(new Intent(Home.this,LeavesDetails.class));
+                LeavesDetails.selectedLeave = leavesList.get(position).getAsJsonObject();
+
+            }
+        });
+
+
+
+
+
 
         fabCheckInOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,6 +133,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 .build();
 
         placeHolderApi = retrofit.create(PlaceHolderApi.class);
+
+        employeeName.setText(empName);
 
         TaskStatusSpinner();
 //        getUserLeaves();
@@ -155,10 +181,21 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 if (code == 200) {
                     GetResult_JsonArray responseBalance = response.body();
                     leavesList = responseBalance.getResult();
-                    leavesListView = findViewById(R.id.home_LeavesListView);
-                    HomeBalanceDetails homeBalanceDetails = new HomeBalanceDetails();
-                    leavesListView.setAdapter(homeBalanceDetails);
-                    progressDialog.dismiss();
+
+                    if (leavesList.size() == 0) {
+                        message.setVisibility(View.VISIBLE);
+                        message.setText(R.string.no_leaves);
+                        progressDialog.dismiss();
+                    } else {
+                        message.setVisibility(View.GONE);
+                        message.setText(R.string.no_leaves);
+                        progressDialog.dismiss();
+                    }
+//                        leavesListView = findViewById(R.id.home_LeavesListView);
+                        HomeBalanceDetails homeBalanceDetails = new HomeBalanceDetails();
+                        leavesListView.setAdapter(homeBalanceDetails);
+                        progressDialog.dismiss();
+
                 }
                 else {
                     JSONObject jsonObject = null;
