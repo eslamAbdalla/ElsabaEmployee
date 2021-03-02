@@ -21,6 +21,7 @@ import android.net.nsd.NsdServiceInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -89,6 +90,8 @@ public class Requests extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_requests);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         leaveTypeSpinner = findViewById(R.id.requests_LeaveTypeSpinner);
         replacementEmpSpinner = findViewById(R.id.requests_ReplacementSpinner);
@@ -592,4 +595,10 @@ public class Requests extends AppCompatActivity{
             }
         });
     }
+    public boolean onOptionsItemSelected (MenuItem item){
+        startActivity(new Intent(Requests.this,Home.class));
+        return true ;
+    }
+
+
 }

@@ -16,6 +16,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Process;
 import android.util.DisplayMetrics;
@@ -25,13 +26,16 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.collection.LLRBNode;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -53,6 +57,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
     ListView leavesListView ;
     TextView employeeName, message ;
+
+    JsonArray balanceList ;
+    ListView balanceListView ;
+
 
 
     JsonArray leavesList ;
@@ -137,6 +145,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         employeeName.setText(empName);
 
         TaskStatusSpinner();
+        getUserBalance();
 //        getUserLeaves();
 //startActivity(new Intent(this,EmployeeBalance.class));
     }
@@ -291,6 +300,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             TextView LeaveManagerStatus = (TextView)view.findViewById(R.id.home_ManagerStatus);
             TextView LeaveHrStatus = (TextView)view.findViewById(R.id.home_HrStatus);
 
+            LinearLayout headLinear = (LinearLayout) view.findViewById(R.id.home_headRelative);
+
             JsonObject LeaveObj = leavesList.get(i).getAsJsonObject();
 
             String leaveName = LeaveObj.get("leaveTypeName").toString().replaceAll("\"","");
@@ -302,6 +313,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             String leaveRequestDate = LeaveObj.get("leaveTimeStamp").toString().replaceAll("\"","");
             String leaveManagerStatus = LeaveObj.get("managerStatus").toString().replaceAll("\"","");
             String leaveHrStatus = LeaveObj.get("hrStatus").toString().replaceAll("\"","");
+
+
+
+
+
 
             if (leaveFromTime.equals("null") && leaveToTime.equals("null")){
                 LeaveFromTime.setText("------");
@@ -319,10 +335,154 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             LeaveManagerStatus.setText(leaveManagerStatus);
             LeaveHrStatus.setText(leaveHrStatus);
 
+            if (leaveStatus.equals("Pending")){
+                headLinear.setBackgroundColor(Color.parseColor("#D9E805"));
+            }else if (leaveStatus.equals("Approved")){
+                headLinear.setBackgroundColor(Color.parseColor("#08CD32"));
+            }else if (leaveStatus.equals("Rejected")){
+                headLinear.setBackgroundColor(Color.parseColor("#EF354A"));
+            }
+
             return view;
         }
 
     }
+
+
+    class BalanceDetails extends BaseAdapter {
+
+
+        @Override
+        public int getCount() {
+            return balanceList.size();
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return 0;
+        }
+
+
+
+
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+
+
+            view = getLayoutInflater().inflate(R.layout.home_employee_balance_details,null);
+
+            TextView LeaveName = (TextView)view.findViewById(R.id.homeBalance_LeaveName);
+            TextView LeaveTotalDays = (TextView)view.findViewById(R.id.homeBalance_LeaveTotalDays);
+            TextView Balance = (TextView)view.findViewById(R.id.homeBalance_Balance);
+
+            JsonObject BalanceObj = balanceList.get(i).getAsJsonObject();
+
+            String leaveName = BalanceObj.get("leaveTypeName").toString().replaceAll("\"","");
+            String  leaveTotalDays = BalanceObj.get("leaveTypeTotalDays").toString();
+            int balance = BalanceObj.get("balance").getAsInt();
+
+
+            LeaveName.setText(leaveName);
+
+            Balance.setText(balance+"");
+
+
+
+            if (leaveTotalDays.equals("null")||leaveTotalDays.equals("")){
+                LeaveTotalDays.setText("0");
+            }else {
+                LeaveTotalDays.setText(leaveTotalDays+"");
+            }
+
+
+
+
+            return view;
+        }
+
+
+    }
+
+
+
+    private void getUserBalance(){
+        progressDialog.show();
+        Call<GetResult_JsonArray> call = placeHolderApi.getUserBalance("Bearer "+LogIn.token,LogIn.employeeDetailsId);
+
+        call.enqueue(new Callback<GetResult_JsonArray>() {
+            @Override
+            public void onResponse(Call<GetResult_JsonArray> call, Response<GetResult_JsonArray> response) {
+
+                int code = response.code();
+                if (code == 200) {
+
+                    GetResult_JsonArray responseBalance = response.body();
+                    balanceList = responseBalance.getResult();
+
+                    balanceListView = findViewById(R.id.home_BalanceListView);
+                   BalanceDetails homeBalanceDetails = new BalanceDetails();
+                    balanceListView.setAdapter(homeBalanceDetails);
+
+                    progressDialog.dismiss();
+                }
+                else {
+
+
+
+                    JSONObject jsonObject = null;
+                    try {
+                        jsonObject = new JSONObject(response.errorBody().string());
+                        JSONObject aaa = jsonObject.getJSONObject("responseException");
+                        String userMessage = aaa.getString("exceptionMessage");
+//                        ProgressBar.setVisibility(View.GONE);
+                        progressDialog.dismiss();
+//                        errorText.setVisibility(View.VISIBLE);
+//                        errorText.setText(userMessage);
+                        if (userMessage == "You are not Authorized."||userMessage.equals("You are not Authorized."))
+                        {
+                            Toast.makeText(Home.this, userMessage, Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(Home.this,LogIn.class));
+                        }else {
+                            Toast.makeText(Home.this, userMessage, Toast.LENGTH_LONG).show();
+                        }
+//
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+
+            }
+            @Override
+            public void onFailure(Call<GetResult_JsonArray> call, Throwable t) {
+
+                progressDialog.dismiss();
+                String errorMessage = t.getMessage();
+                ReloadDialog(errorMessage,new Callable<Void>() {
+                    @Override
+                    public Void call() throws Exception {
+                        getUserBalance();
+                        return null;
+                    }
+                });
+
+            }
+        });
+
+    }
+
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

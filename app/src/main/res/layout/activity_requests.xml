@@ -97,9 +97,9 @@
         android:layout_margin="15dp"
         android:text="@string/save"
         android:background="@drawable/button"
-        android:screenReaderFocusable="@drawable/fingerprint_32"
+
         android:layout_below="@+id/requests_Note"
-        android:drawableLeft="@drawable/fingerprint_32" />
+        />
 
 
 </RelativeLayout>
