@@ -29,6 +29,7 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,8 +61,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
     JsonArray balanceList ;
     ListView balanceListView ;
-
-
 
     JsonArray leavesList ;
 
