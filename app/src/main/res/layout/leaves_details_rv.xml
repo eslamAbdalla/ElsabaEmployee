@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/listview"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/home_headRelative"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+
+            <!--      G    DAD7D7    Y   D9E805     R   EF354A  GRE     08CD32   -->
+
+            <TextView
+                android:id="@+id/home_LeaveName"
+                android:layout_width="0dp"
+                android:layout_weight="13"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="Leave Name"
+                />
+
+
+
+            <TextView
+                android:id="@+id/home_LeaveFromDate"
+                android:layout_width="0dp"
+                android:layout_weight="11"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                android:text="From Date"/>
+
+            <TextView
+                android:id="@+id/home_LeaveStatus"
+                android:layout_width="0dp"
+                android:layout_weight="10"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="Leave Satus"
+                />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="@string/from_date"/>
+                <View
+
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="#c2bbbb" />
+
+                <!--    <TextView-->
+                <!--        android:id="@+id/home_LeaveFromDate"-->
+                <!--        android:layout_width="0dp"-->
+                <!--        android:layout_height="wrap_content"-->
+                <!--        android:layout_weight="16"-->
+                <!--        android:layout_margin="5dp"-->
+                <!--        android:gravity="center"-->
+                <!--        android:text="From Date"/>-->
+
+
+
+
+            </LinearLayout>
+
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+
+                android:background="#c2bbbb" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="@string/to_date"/>
+                <View
+
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+
+                    android:background="#c2bbbb" />
+
+                <TextView
+                    android:id="@+id/home_LeaveToDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="16"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="To Date"/>
+
+
+
+
+            </LinearLayout>
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+
+                android:background="#c2bbbb" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="@string/from_time"/>
+                <View
+
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="#c2bbbb" />
+
+                <TextView
+                    android:id="@+id/home_LeaveFromTime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="16"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="Frome Time"/>
+
+
+
+
+            </LinearLayout>
+
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+
+                android:background="#c2bbbb" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="@string/to_time"/>
+                <View
+
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+
+                    android:background="#c2bbbb" />
+
+                <TextView
+                    android:id="@+id/home_LeaveToTime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="16"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="To Time"/>
+
+
+
+
+            </LinearLayout>
+
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+
+                android:background="#c2bbbb" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="@string/requested_date"/>
+                <View
+
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="#c2bbbb" />
+
+                <TextView
+                    android:id="@+id/home_LeaveRequestedDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="16"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="Requested Date"/>
+
+
+
+
+            </LinearLayout>
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+
+                android:background="#c2bbbb" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="@string/manager_approval"/>
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="#c2bbbb" />
+                <TextView
+                    android:id="@+id/home_ManagerStatus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="16"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="Manager Approval"/>
+
+
+
+
+            </LinearLayout>
+
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+
+                android:background="#c2bbbb" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="@string/hr_approval"/>
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="#c2bbbb" />
+                <TextView
+                    android:id="@+id/home_HrStatus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="16"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="Hr Approval"/>
+
+
+
+
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

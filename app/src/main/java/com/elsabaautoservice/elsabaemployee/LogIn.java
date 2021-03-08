@@ -195,9 +195,22 @@ public class LogIn extends AppCompatActivity {
 
                     }else {
                         progressDialog.dismiss();
-                        startActivity(new Intent(LogIn.this, Home.class));
-                        Home.empName = empName ;
-//                        Home.empName = empName + "  ("+empFingerPrint+")" ;
+//                        startActivity(new Intent(LogIn.this, Home.class));
+//                        Home.empName = empName ;
+////                        Home.empName = empName + "  ("+empFingerPrint+")" ;
+
+
+
+
+
+                        startActivity(new Intent(LogIn.this, HomeRV.class));
+                        HomeRV.empName = empName ;
+//                        HomeRV.empName = empName + "  ("+empFingerPrint+")" ;
+
+
+
+
+
                     }
                 }else {
 

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".HomeRV">
+
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/activity_main_drawer_layout"
+        android:fitsSystemWindows="true"
+        tools:openDrawer="start"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+
+
+
+                    <TextView
+                        android:id="@+id/home_EmpName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"/>
+
+
+                    <!--  *************************Balance************************* -->
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <View
+
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="#c2bbbb" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#DAD7D7"
+                            android:orientation="horizontal">
+
+
+
+
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="14"
+                                android:layout_margin="5dp"
+                                android:gravity="center"
+                                android:text="Leave"/>
+                            <View
+
+                                android:layout_width="2dp"
+                                android:layout_height="match_parent"
+                                android:background="#c2bbbb" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="10"
+                                android:layout_margin="5dp"
+                                android:gravity="center"
+                                android:text="Total Days"/>
+
+                            <View
+
+                                android:layout_width="2dp"
+                                android:layout_height="match_parent"
+                                android:background="#c2bbbb" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="10"
+                                android:layout_margin="5dp"
+                                android:gravity="center"
+                                android:text="@string/balance"/>
+
+
+                        </LinearLayout>
+
+
+                        <View
+
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="#c2bbbb" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/home_BalanceRecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            />
+
+
+
+                        <View
+
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="#c2bbbb" />
+
+                    </LinearLayout>
+
+
+
+                    <!--  *************************Balance End************************* -->
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <Spinner
+                            android:id="@+id/home_ApproveStatusSpinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            style="@style/spinner_style"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/home_LeavesRecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                           />
+
+                        <TextView
+                            android:id="@+id/home_message"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+                            android:layout_gravity="center"
+                            android:textSize="20sp"
+                            android:textColor="#FF0000"
+                            android:visibility="gone"/>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                </androidx.core.widget.NestedScrollView>
+
+                <com.github.clans.fab.FloatingActionMenu
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="16dp"
+                    app:menu_colorNormal="@color/colorPrimary"
+                    app:menu_colorPressed="@color/colorPrimaryDark"
+                    app:menu_backgroundColor="@android:color/transparent"
+                    app:menu_fab_label=""
+                    app:menu_openDirection="up"
+                    app:menu_showShadow="true">
+
+                    <com.github.clans.fab.FloatingActionButton
+                        android:id="@+id/home_fabAddRequest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/request32"
+                        app:fab_label="@string/add_request"
+                        app:fab_colorNormal="@color/colorPrimary"
+                        app:fab_colorPressed="@color/colorPrimaryDark"
+                        />
+
+                    <com.github.clans.fab.FloatingActionButton
+                        android:id="@+id/home_CheckInOut"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/fingerprint_32"
+                        app:fab_colorNormal="@color/colorPrimary"
+                        app:fab_colorPressed="@color/colorPrimaryDark"
+                        app:fab_label="@string/check_in_out"
+                        />
+
+                </com.github.clans.fab.FloatingActionMenu>
+
+
+
+
+            </RelativeLayout>
+
+
+        <com.google.android.material.navigation.NavigationView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/navigationView"
+            android:layout_gravity="start"
+            app:menu="@menu/drawer_menu"/>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+
+</LinearLayout>

@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 public class Methods {
 
 
-     String dateFormat (String Date ,String format){
+      String dateFormat (String Date ,String format){
         SimpleDateFormat fullDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);
         java.util.Date date = null;
