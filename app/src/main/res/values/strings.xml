@@ -4,7 +4,8 @@
     <string name="open" translatable="false">open</string>
     <string name="close" translatable="false">Close</string>
 
-    <!--        <string name="basic_url" translatable="false">http://192.168.10.2/hrapi/hrapi/</string>-->
+<!--            <string name="basic_url" translatable="false">http://192.168.10.2/hrapi/hrapi/</string>-->
+<!--            <string name="basic_url" translatable="false">http://192.168.10.2/testhrapi/hrapi/</string>-->
     <string name="basic_url" translatable="false">http://213.212.218.178:8090/hrapi/hrapi/</string>
 
     <string name="please_enter_valid_user_name_and_password">Please Enter Valid User Name And Password</string>
@@ -71,6 +72,9 @@
     <string name="rejected">Rejected</string>
     <string name="filter">Filter</string>
     <string name="no_leaves">No Leaves found</string>
+
+    <string name="no_image">No Image</string>
+    <string name="select">Select</string>
 
 
 </resources>

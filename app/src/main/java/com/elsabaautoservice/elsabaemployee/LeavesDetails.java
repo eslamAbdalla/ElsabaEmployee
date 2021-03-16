@@ -70,7 +70,8 @@ public class LeavesDetails extends AppCompatActivity {
 
 
     public boolean onOptionsItemSelected (MenuItem item){
-        startActivity(new Intent(LeavesDetails.this,Home.class));
+//        startActivity(new Intent(LeavesDetails.this,Home.class));
+        onBackPressed();
         return true ;
     }
 

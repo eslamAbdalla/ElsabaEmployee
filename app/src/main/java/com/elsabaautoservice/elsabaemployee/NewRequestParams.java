@@ -46,6 +46,15 @@ public class NewRequestParams {
 
 class Attachment {
 
-    public Attachment() {
+
+    @SerializedName("LeaveAttachmentFileName")
+    private String LeaveAttachmentFileName;
+
+    @SerializedName("LeaveAttachmentDescription")
+    private String LeaveAttachmentDescription;
+
+    public Attachment(String leaveAttachmentFileName, String leaveAttachmentDescription) {
+        LeaveAttachmentFileName = leaveAttachmentFileName;
+        LeaveAttachmentDescription = leaveAttachmentDescription;
     }
 }

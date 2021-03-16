@@ -184,10 +184,10 @@ public class LogIn extends AppCompatActivity {
                     token = result.get("token").toString().replaceAll("\"", "");
                     employeeDetailsId = result.get("employeeDetailsId").getAsLong();
 
-//                    String empName = result.get("fullName").toString().replaceAll("\"", "");
-                    String empName = result.get("username").toString().replaceAll("\"", "");
+                    String empName = result.get("fullName").toString().replaceAll("\"", "");
+//                    String empName = result.get("username").toString().replaceAll("\"", "");
 
-//                    String empFingerPrint = result.get("fingerPrint").toString().replaceAll("\"", "");
+                    String empFingerPrint = result.get("fingerPrint").toString().replaceAll("\"", "");
 
                     if (token.equals("null")){
                         progressDialog.dismiss();
@@ -204,8 +204,8 @@ public class LogIn extends AppCompatActivity {
 
 
                         startActivity(new Intent(LogIn.this, HomeRV.class));
-                        HomeRV.empName = empName ;
-//                        HomeRV.empName = empName + "  ("+empFingerPrint+")" ;
+//                        HomeRV.empName = empName ;
+                        HomeRV.empName = empName + "  ("+empFingerPrint+")" ;
 
 
 

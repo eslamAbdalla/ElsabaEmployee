@@ -1,26 +1,41 @@
 package com.elsabaautoservice.elsabaemployee;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.net.NetworkInfo;
 import android.net.ParseException;
+import android.net.Uri;
 import android.net.nsd.NsdServiceInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.DocumentsContract;
+import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -40,6 +55,7 @@ import com.google.gson.JsonObject;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -62,11 +78,11 @@ public class Requests extends AppCompatActivity{
     ArrayAdapter<ReplacementEmployee> replacementAdapter ;
 
     TextView fromDate,toDate ;
-    TextView fromTime,toTime ;
+    TextView fromTime,toTime,fileName ;
     EditText Notes ;
-    Button save ;
+    Button save ,selectFile ;
 
-    LinearLayout timeLayout ;
+    LinearLayout timeLayout,attachmentLayout ;
 
     int countOfTimes ;
     boolean requireTime  ;
@@ -86,6 +102,12 @@ public class Requests extends AppCompatActivity{
 
     List<Attachment> attachments ;
 
+    //    File file ;
+    public static final int PICK_IMAGE = 1;
+    String filePath ;
+    String FileName ;
+    String attachmentName ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,14 +122,26 @@ public class Requests extends AppCompatActivity{
         fromTime = findViewById(R.id.requests_LeaveTimeFrom);
         toTime = findViewById(R.id.requests_LeaveTimeTo);
         Notes = findViewById(R.id.requests_Note) ;
+        fileName = findViewById(R.id.requests_attachmentName) ;
         timeLayout = findViewById(R.id.timeLayoute);
+        attachmentLayout = findViewById(R.id.attachmentLayout);
 
         save = findViewById(R.id.requests_Save);
+        selectFile = findViewById(R.id.selectFile);
 
         progressDialog = new Dialog(Requests.this);
         progressDialog.setContentView(R.layout.progressdialog);
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         progressDialog.setCancelable(false);
+
+
+        if (ContextCompat.checkSelfPermission(Requests.this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(Requests.this,new String[]{
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+            },100);
+        }
+
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(getString(R.string.basic_url))
@@ -141,6 +175,16 @@ public class Requests extends AppCompatActivity{
                 showToTimePickerDialog();
             }
         });
+
+        selectFile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                SelectFile() ;
+
+            }
+        });
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -273,10 +317,12 @@ public class Requests extends AppCompatActivity{
                     }else {
                          CountOfTimes = Integer.parseInt(stCountOfTimes);
                     }
-                    if (!requireAttachment){
-                        LeaveTypes leaveTypes = new LeaveTypes(leaveTypeId,leaveTypeName,requireTime,CountOfTimes,requireAttachment);
-                        leaveTypesList.add(leaveTypes);
-                    }
+//                    if (!requireAttachment){
+//                        LeaveTypes leaveTypes = new LeaveTypes(leaveTypeId,leaveTypeName,requireTime,CountOfTimes,requireAttachment);
+//                        leaveTypesList.add(leaveTypes);
+//                    }
+                    LeaveTypes leaveTypes = new LeaveTypes(leaveTypeId,leaveTypeName,requireTime,CountOfTimes,requireAttachment);
+                    leaveTypesList.add(leaveTypes);
 
                 }
                 leaveTypeAdapter = new ArrayAdapter<LeaveTypes>(Requests.this,R.layout.spinner_row,leaveTypesList);
@@ -297,7 +343,8 @@ public class Requests extends AppCompatActivity{
 
 
                             countOfTimes = leaveType.getCountOfTimes();
-                           requireTime = leaveType.getRequireTime();
+                            requireTime = leaveType.getRequireTime();
+                            requireAttachment = leaveType.isRequireAttachment();
 
                             if (!requireTime){
                                 timeLayout.setVisibility(View.GONE);
@@ -306,6 +353,13 @@ public class Requests extends AppCompatActivity{
                                 timeLayout.setVisibility(View.VISIBLE);
                                 toDate.setClickable(false);
                             }
+                        if (requireAttachment){
+                            attachmentLayout.setVisibility(View.VISIBLE);
+
+                        }else {
+                            attachmentLayout.setVisibility(View.GONE);
+
+                        }
 
                         if (countOfTimes != 0){
                             toTime.setClickable(false);
@@ -405,6 +459,8 @@ public class Requests extends AppCompatActivity{
         progressDialog.show();
 
         attachments = new ArrayList<Attachment>();
+        Attachment attachment = new Attachment(attachmentName,FileName);
+        attachments.add(attachment) ;
         notes = Notes.getText().toString();
 
         NewRequestParams params = new NewRequestParams(LogIn.employeeDetailsId,selectedLeaveTypeId,requestFromDate,requestToDate,
@@ -477,6 +533,164 @@ public class Requests extends AppCompatActivity{
 
 
     }
+
+
+
+    private  void uploadImage (){
+
+
+
+        progressDialog.show();
+
+        MultipartBody.Part requestImage = null ;
+        File file = new File(filePath);
+
+        FileName = file.getName();
+
+//        fileName.setText(FileName);
+
+        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"),file);
+        requestImage = MultipartBody.Part.createFormData("image",file.getName(),requestFile);
+
+
+        Call<Result> call = placeHolderApi.UploadImage(requestImage);
+        call.enqueue(new Callback<Result>() {
+            @Override
+            public void onResponse(Call<Result> call, Response<Result> response) {
+
+
+//                String aaaaaaaa = response.body().getResult();
+
+
+                int code = response.code();
+                if (code == 200) {
+
+                    attachmentName = response.body().getResult();
+
+
+
+                    fileName.setText(FileName);
+
+                    progressDialog.dismiss();
+
+
+                }else  {
+
+                    JSONObject jsonObject = null;
+                    try {
+                        jsonObject = new JSONObject(response.errorBody().string());
+                        JSONObject aaa = jsonObject.getJSONObject("responseException");
+                        String userMessage = aaa.getString("exceptionMessage");
+                        progressDialog.dismiss();
+                        if (userMessage == "You are not Authorized."||userMessage.equals("You are not Authorized."))
+                        {
+                            Toast.makeText(Requests.this, userMessage, Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(Requests.this,LogIn.class));
+                        }else {
+//                            Toast.makeText(Requests.this, userMessage, Toast.LENGTH_LONG).show();
+
+
+                            ErrorMessage(userMessage);
+
+
+
+
+                        }
+//
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+
+            @Override
+            public void onFailure(Call<Result> call, Throwable t) {
+
+                progressDialog.dismiss();
+                String errorMessage = t.getMessage();
+                ReloadDialog(errorMessage,new Callable<Void>() {
+                    @Override
+                    public Void call() throws Exception {
+                        uploadImage();
+                        return null;
+                    }
+                });
+            }
+        });
+
+
+
+
+
+
+    }
+
+
+
+    private void SelectFile (){
+//        Intent chooseFile = new Intent(Intent.ACTION_GET_CONTENT);
+//        chooseFile.setType("*/*");
+//        chooseFile = Intent.createChooser(chooseFile, "Choose a file");
+//        startActivityForResult(chooseFile, PICK_IMAGE);
+
+
+//
+//        Intent chooseFile = new Intent(Intent.ACTION_GET_CONTENT);
+//        chooseFile.setType("image/*");
+//        chooseFile = Intent.createChooser(chooseFile, "Choose a file");
+//        startActivityForResult(chooseFile, PICK_IMAGE);
+
+
+
+//        Intent chooseFile = new Intent(Intent.ACTION_PICK);
+        Intent chooseFile = new Intent(Intent.ACTION_PICK);
+        chooseFile.setType("*/*");
+//        chooseFile.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+        chooseFile = Intent.createChooser(chooseFile, "Choose a file");
+        startActivityForResult(chooseFile, PICK_IMAGE);
+
+
+
+
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        int aaa = resultCode;
+
+        if (requestCode == PICK_IMAGE && data != null ) {
+
+            Uri uri = data.getData();
+
+//            String [] proj={MediaStore.Images.Media.DATA};
+//            Cursor cursor = managedQuery( uri,
+//                    proj, // Which columns to return
+//                    null,       // WHERE clause; which rows to return (all rows)
+//                    null,       // WHERE clause selection arguments (none)
+//                    null); // Order-by clause (ascending by name)
+//            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+//            cursor.moveToFirst();
+//
+//            filePath =  cursor.getString(column_index);
+
+//            uploadImage() ;
+
+            filePath = getPath(Requests.this,uri);
+
+            uploadImage() ;
+
+        }
+    }
+
+
+
+
     
     private void ReloadDialog (String Message ,final Callable<Void> methodParam){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -599,6 +813,148 @@ public class Requests extends AppCompatActivity{
         startActivity(new Intent(Requests.this,Home.class));
         return true ;
     }
+
+
+
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public  String getPath(final Context context, final Uri uri) {
+
+        final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
+
+        // DocumentProvider
+        if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
+            // ExternalStorageProvider
+            if (isExternalStorageDocument(uri)) {
+                final String docId = DocumentsContract.getDocumentId(uri);
+                final String[] split = docId.split(":");
+                final String type = split[0];
+
+                if ("primary".equalsIgnoreCase(type)) {
+                    return Environment.getExternalStorageDirectory() + "/" + split[1];
+                }
+
+                // TODO handle non-primary volumes
+            }
+            // DownloadsProvider
+             if (isDownloadsDocument(uri)) {
+
+                final String id = DocumentsContract.getDocumentId(uri);
+                final Uri contentUri = ContentUris.withAppendedId(
+                        Uri.parse("content://downloads/public_downloads"), Long.valueOf(id));
+
+                return getDataColumn(context, contentUri, null, null);
+
+
+
+            }
+
+
+
+
+
+
+
+
+
+            // MediaProvider
+            else if (isMediaDocument(uri)) {
+                final String docId = DocumentsContract.getDocumentId(uri);
+                final String[] split = docId.split(":");
+                final String type = split[0];
+
+                Uri contentUri = null;
+                if ("image".equals(type)) {
+                    contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+                } else if ("video".equals(type)) {
+                    contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                } else if ("audio".equals(type)) {
+                    contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+                }
+
+                final String selection = "_id=?";
+                final String[] selectionArgs = new String[] {
+                        split[1]
+                };
+
+                return getDataColumn(context, contentUri, selection, selectionArgs);
+            }
+        }
+        // MediaStore (and general)
+        else if ("content".equalsIgnoreCase(uri.getScheme())) {
+            return getDataColumn(context, uri, null, null);
+        }
+        // File
+        else if ("file".equalsIgnoreCase(uri.getScheme())) {
+            return uri.getPath();
+        }
+        uploadImage();
+        return null;
+
+
+    }
+
+    /**
+     * Get the value of the data column for this Uri. This is useful for
+     * MediaStore Uris, and other file-based ContentProviders.
+     *
+     * @param context The context.
+     * @param uri The Uri to query.
+     * @param selection (Optional) Filter used in the query.
+     * @param selectionArgs (Optional) Selection arguments used in the query.
+     * @return The value of the _data column, which is typically a file path.
+     */
+    public static String getDataColumn(Context context, Uri uri, String selection,
+                                       String[] selectionArgs) {
+
+        Cursor cursor = null;
+        final String column = "_data";
+        final String[] projection = {
+                column
+        };
+
+        try {
+            cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs,
+                    null);
+            if (cursor != null && cursor.moveToFirst()) {
+                final int column_index = cursor.getColumnIndexOrThrow(column);
+                return cursor.getString(column_index);
+            }
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+        return null;
+    }
+
+
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is ExternalStorageProvider.
+     */
+    public static boolean isExternalStorageDocument(Uri uri) {
+        return "com.android.externalstorage.documents".equals(uri.getAuthority());
+    }
+
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is DownloadsProvider.
+     */
+    public static boolean isDownloadsDocument(Uri uri) {
+        return "com.android.providers.downloads.documents".equals(uri.getAuthority());
+    }
+
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is MediaProvider.
+     */
+    public static boolean isMediaDocument(Uri uri) {
+        return "com.android.providers.media.documents".equals(uri.getAuthority());
+    }
+
+
+
+
 
 
 }

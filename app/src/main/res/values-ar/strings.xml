@@ -66,5 +66,8 @@
     <string name="filter">بحث</string>
     <string name="no_leaves">لا يوجد اجازات</string>
 
+    <string name="no_image">لا يوجد ملف</string>
+    <string name="select">اختار</string>
+
 
 </resources>
