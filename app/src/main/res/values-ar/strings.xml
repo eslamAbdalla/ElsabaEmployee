@@ -68,6 +68,8 @@
 
     <string name="no_image">لا يوجد ملف</string>
     <string name="select">اختار</string>
+    <string name="success">عملية ناجحة</string>
+    <string name="error">خطأ</string>
 
 
 </resources>

@@ -75,6 +75,8 @@
 
     <string name="no_image">No Image</string>
     <string name="select">Select</string>
+    <string name="success">Success</string>
+    <string name="error">Error</string>
 
 
 </resources>

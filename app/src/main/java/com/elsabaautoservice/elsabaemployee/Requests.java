@@ -742,7 +742,10 @@ public class Requests extends AppCompatActivity{
                             }
                         }
 
-                );
+                )
+        .setTitle(R.string.error)
+        .setIcon(R.drawable.error_512)
+        ;
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
@@ -759,7 +762,9 @@ public class Requests extends AppCompatActivity{
                                 startActivity(new Intent(Requests.this,Home.class));
                             }
                         }
-                );
+                )
+                .setTitle(R.string.success)
+                .setIcon(R.drawable.checked_512);
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
