@@ -14,7 +14,7 @@
     <string name="Profile">الملف الشخصي</string>
 
     <string name="please_select_leavetype">اختار نوع الاجازة</string>
-    <string name="please_select_replacement">اختار الموظف البديل</string>
+    <string name="please_select_replacement">من فضلك اختار الموظف البديل</string>
     <string name="from_date">من تاريخ</string>
     <string name="to_date">الى تاريخ</string>
     <string name="from_time">بداية الوقت</string>

@@ -91,6 +91,8 @@ public class Requests extends AppCompatActivity{
     private PlaceHolderApi placeHolderApi ;
     String errorMesaage ;
 
+    Methods methods ;
+
 //    ------------------------Params-------------------------------------------
     int selectedLeaveTypeId ;
     long selectedReplacementEmp ;
@@ -189,18 +191,27 @@ public class Requests extends AppCompatActivity{
             @Override
             public void onClick(View v) {
 
+                methods = new Methods();
+
                 if (selectedLeaveTypeId == 0 ){
-                    ErrorDialog(getString(R.string.please_select_leavetype));
+//                    ErrorDialog(getString(R.string.please_select_leavetype));
+                    methods.ErrorDialog(getString(R.string.please_select_leavetype),Requests.this);
+
                 }else if (selectedReplacementEmp == 0){
-                    ErrorDialog(getString(R.string.please_select_replacement));
+//                    ErrorDialog(getString(R.string.please_select_replacement));
+                    methods.ErrorDialog(getString(R.string.please_select_replacement),Requests.this);
                 }else if (requestFromDate == ""){
-                    ErrorDialog(getString(R.string.please_select_date));
+//                    ErrorDialog(getString(R.string.please_select_date));
+                    methods.ErrorDialog(getString(R.string.please_select_date),Requests.this);
                 }else if (requestToDate == ""){
-                    ErrorDialog(getString(R.string.please_select_date));
+//                    ErrorDialog(getString(R.string.please_select_date));
+                    methods.ErrorDialog(getString(R.string.please_select_date),Requests.this);
                 }else if (requestFromTime == "" && requireTime){
-                    ErrorDialog(getString(R.string.please_select_time));
+//                    ErrorDialog(getString(R.string.please_select_time));
+                    methods.ErrorDialog(getString(R.string.please_select_time),Requests.this);
                 }else if (requestToTime == "" && requireTime){
-                    ErrorDialog(getString(R.string.please_select_time));
+//                    ErrorDialog(getString(R.string.please_select_time));
+                    methods.ErrorDialog(getString(R.string.please_select_time),Requests.this);
                 }else {
 
                 addRequest();
@@ -638,10 +649,7 @@ public class Requests extends AppCompatActivity{
 
 
 //
-//        Intent chooseFile = new Intent(Intent.ACTION_GET_CONTENT);
-//        chooseFile.setType("image/*");
-//        chooseFile = Intent.createChooser(chooseFile, "Choose a file");
-//        startActivityForResult(chooseFile, PICK_IMAGE);
+
 
 
 
@@ -724,31 +732,6 @@ public class Requests extends AppCompatActivity{
 
     }
 
-
-
-    private void ErrorDialog (String Message ){
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-//        alertDialogBuilder.setTitle("Connection Error");
-        alertDialogBuilder
-                .setMessage(Message)
-                .setCancelable(false)
-                .setPositiveButton(R.string.ok,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-//                                        moveTaskToBack(true);
-
-
-
-                            }
-                        }
-
-                )
-        .setTitle(R.string.error)
-        .setIcon(R.drawable.error_512)
-        ;
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
-    }
     private void SuccessDialog (String Message ){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 //        alertDialogBuilder.setTitle("Connection Error");
@@ -783,7 +766,8 @@ public class Requests extends AppCompatActivity{
                     }else {
                         errorMesaage = result.get("messageLocalValue").toString().replaceAll("\"","");
                     }
-                    ErrorDialog(errorMesaage);
+//                    ErrorDialog(errorMesaage);
+                    methods.ErrorDialog(errorMesaage,Requests.this);
                 }else {
                     JSONObject jsonObject = null;
                     try {
@@ -798,7 +782,8 @@ public class Requests extends AppCompatActivity{
                         }else {
 //                            Toast.makeText(Requests.this, userMessage, Toast.LENGTH_LONG).show();
 
-                            ErrorDialog(userMessage);
+//                            ErrorDialog(userMessage);
+                            methods.ErrorDialog(userMessage,Requests.this);
                         }
 //
                     } catch (JSONException e) {

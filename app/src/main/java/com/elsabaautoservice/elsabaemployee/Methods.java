@@ -1,11 +1,19 @@
 package com.elsabaautoservice.elsabaemployee;
 
+import android.content.Context;
+import android.content.DialogInterface;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Pattern;
 
+import androidx.appcompat.app.AlertDialog;
+
 public class Methods {
+
+
+
 
 
       String dateFormat (String Date ,String format){
@@ -49,6 +57,36 @@ public class Methods {
 
 
     }
+
+
+
+     void ErrorDialog (String Message, Context context ){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+//        alertDialogBuilder.setTitle("Connection Error");
+        alertDialogBuilder
+                .setMessage(Message)
+                .setCancelable(false)
+                .setPositiveButton(R.string.ok,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+//                                        moveTaskToBack(true);
+
+
+
+                            }
+                        }
+
+                )
+                .setTitle(R.string.error)
+                .setIcon(R.drawable.error_512)
+        ;
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+
+
+
 
 
 }
